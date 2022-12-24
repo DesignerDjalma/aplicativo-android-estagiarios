@@ -1,0 +1,5 @@
+loading.gif 256x256
+logo.png 512x512
+modal-bg.png 1x1
+presplash.png 512x512
+preview.png 1496x1195

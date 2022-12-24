@@ -1,0 +1,144 @@
+<Texto@MDLabel>:
+    
+
+
+<TextoErro@MDLabel>:
+    markup: True
+    theme_text_color: "Custom"
+    text_color: 1, 0, 0, 1
+    font_size: "12sp"
+
+
+<Centralizador@MDFloatLayout>:
+    # md_bg_color: 0.4, 0.4, 0.4, 1.0
+    size_hint: None, None
+    width: 362
+    height: 60
+    pos_hint: {"center_x": .5, "center_y": .5}
+
+
+<Separador@MDFloatLayout>:
+    # md_bg_color: 0.4, 0.4, 0.4, 1.0
+    size_hint: None, None
+    width: 362
+    height: 20
+    pos_hint: {"center_x": .5, "center_y": .5}
+
+
+<BotaoPadrao@MDFillRoundFlatButton>:
+    pos_hint: {"center_x": .5, "center_y": .5}
+    text_color: "white"
+    font_size: "14sp"
+    halign: "center"
+    
+<UserInput@MDTextField>:
+    write_tab: False
+    mode: "rectangle"
+
+
+
+<MinhaTopBar>:
+    title: "Meu Aplicativo"
+    elevation: 0
+    right_action_items: [["logout", lambda x: root.funcaoLogout(x)]]
+    left_action_items: [["help-box", lambda x: root.funcaoHelpBox(x)]]
+
+
+<TelaLogin>
+    name: "tela_login"
+    
+    MDFlatButton:
+        markup: True
+        font_size: "14sp"
+        text:'[u]Esqueceu sua senha?[/u]'
+        halign: 'center'
+        theme_text_color: "Custom"
+        text_color: 0, 0, 1, 1
+        pos_hint: {"center_x": .5, "center_y": .25}
+        on_release: root.irParaTelaEsqueceuSenha()
+ 
+    MDLabel:
+        pos_hint: {"center_x": .5, "center_y": .05}
+        text:'Criado por: Djalma Filho\n@3Djhey'
+        font_size: "14sp"
+        theme_text_color: "Custom"
+        halign: "center"
+        text_color: 0, 0, 0, 0.4
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MinhaTopBar:
+
+        Texto:
+            text: "Tela de Login"
+            font_size: "20sp"
+            halign: "center"
+
+        MDFloatLayout:
+            # md_bg_color: 1.0, 0.0, 0.0, 0.2
+            size_hint: .8, 1
+            height: 0
+            pos_hint: {"center_x": .50, "center_y": .50}
+
+            MDBoxLayout:
+                # md_bg_color: 0.4, 0.4, 0.4, 1.0
+                orientation:'vertical'
+                size_hint: .9, .1
+                height: 0
+                pos_hint: {"center_x": .5, "center_y": .100} # Controla a Subida da Caixa
+
+# INPUT USUARIO 
+
+                MDTextField:
+                    write_tab: False
+                    mode: "rectangle"
+                    hint_text: "Usuário"
+                    font_size: "14sp"
+                    id: usuarioInput
+                Separador:
+                    height: 7
+                TextoErro:
+                    text: "aqui texto que fica embaixo"
+                    id: usuarioTextoErro # TEXTO EM BAIXO DO USUARIO
+                Separador:
+                    height: 8
+
+# INPUT SENHA 
+                UserInput: 
+                    hint_text: "Senha"
+                    password: True
+                    id: senhaInput
+                Separador:
+                    height: 7
+                TextoErro:
+                    text: "aqui texto que fica embaixo"
+                    id: senhaTextoErro # TEXTO EM BAIXO DA SENHA
+                Separador:
+                    height: 8
+                Separador:
+
+# BOTÕES DE LOGIN E REGISTRAR
+
+                Centralizador:
+                    orientation: "horizontal"
+
+                    BotaoPadrao:
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        text: "     Login     "
+                        on_release: root.irParaTelaPrincipal()
+                    Separador:
+                
+                Centralizador:
+                    orientation: "horizontal"
+
+                    BotaoPadrao:
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        text: "Registra-se"
+                        on_release: root.irParaTelaCadastro()
+                    Separador:
+        MDLabel:  
+
+
+ScreenManager:
+    TelaLogin:

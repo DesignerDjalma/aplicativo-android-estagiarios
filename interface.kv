@@ -1,0 +1,501 @@
+#:import os os
+#:import hex kivy.utils.get_color_from_hex
+#:import math math
+
+
+<TextoErro@MDLabel>:
+    markup: True
+    theme_text_color: "Custom"
+    text_color: 1, 0, 0, 1
+    font_size: "12sp"
+#
+
+
+<Centralizador@MDFloatLayout>:
+    # md_bg_color: 0.4, 0.4, 0.4, 1.0
+    size_hint: None, None
+    width: 362
+    height: 60
+    pos_hint: {"center_x": .5, "center_y": .5}
+#
+
+
+<Separador@MDFloatLayout>:
+    # md_bg_color: 0.4, 0.4, 0.4, 1.0
+    size_hint: None, None
+    width: 362
+    height: 20
+    pos_hint: {"center_x": .5, "center_y": .5}
+#
+
+
+<BotaoPadrao@MDFillRoundFlatButton>:
+    pos_hint: {"center_x": .5, "center_y": .5}
+    text_color: "white"
+    font_size: "14sp"
+    halign: "center"
+#    
+
+
+<UserInput@MDTextField>:
+    write_tab: False
+    mode: "rectangle"
+#
+
+
+<TelaLogin>
+    name: "tela_login"
+    md_bg_color: app.theme_cls.bg_dark
+    # imagem: Cracha
+    Image:
+        size_hint_y: .2
+        pos_hint: {"center_x": .5, "center_y": .7}
+        source:
+            f"{os.environ['MEU_APP_ROOT']}" \
+            f"/assets/images/tela_login/id_card.png"
+
+    # DECORAÇÕES #
+    MDBoxLayout:
+        #md_bg_color: app.theme_cls.primary_color
+        md_bg_color: hex("e3e3e3")
+        size_hint: None, .2
+        width: self.height
+        radius: self.height / 2
+        pos: -self.height / 3, root.height - self.height + dp(42)
+
+    MDBoxLayout:
+        #md_bg_color: app.theme_cls.primary_color
+        md_bg_color: hex("e3e3e3")
+        size_hint: None, .15
+        width: self.height
+        radius: self.height / 2
+        pos: root.width - self.width / 2.2, root.height - dp(240)
+
+    # ÁREA DE TEXT FIELDS
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "12dp"
+        size_hint_x: .6
+        pos_hint: {"center_x": .5, "center_y": .35}
+        adaptive_height: True
+
+        # usuario_field
+        MDTextField:
+            id: usuario_field
+            hint_text: "Email"
+            icon_left: "at"
+            mode: "round"
+            height: "42dp"
+            write_tab: False
+        # usuario_field_txt_erro
+        MDLabel:
+            id: usuario_field_txt_erro 
+            text: "    usuário inválido"
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+        # senha_field
+        MDTextField:
+            id: senha_field
+            hint_text: "Senha"
+            password: True
+            icon_left: "key"
+            mode: "round"
+            height: "42dp"
+            write_tab: False
+            normal_color: app.theme_cls.accent_color
+        # senha_field_txt_erro
+        MDLabel:
+            text: "    senha inválida"
+            id: senha_field_txt_erro
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+        # ESPAÇAMENTOS
+        MDLabel:
+            text: " "
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+        MDLabel:
+            text: " "
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+        # BOTÃO DE LOGIN
+        MDFillRoundFlatButton:
+            text: "LOGIN"
+            size_hint: None, None
+            size: usuario_field.size[0], usuario_field.size[1]
+            pos_hint: {"center_x": .5}
+            on_release: root.irParaTelaPrincipal()
+        # BOTÃO DE REGISTRAR
+        MDFillRoundFlatButton:
+            text: "REGISTRAR"
+            theme_text_color: "Custom"
+            md_bg_color: "green"
+            size_hint: None, None
+            size: usuario_field.size[0], usuario_field.size[1]
+            pos_hint: {"center_x": .5}
+            on_release: root.irParaTelaCadastroUsuario()
+        # LINK ESQUECEU SUA SENHA
+        MDFlatButton:
+            text: '[u]Esqueceu sua senha?[/u]'
+            halign: 'center'
+            font_size: "14sp"
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 0, 0, 1, 1
+            pos_hint: {"center_x": .5}
+            on_release: root.irParaTelaEsqueceuSenha()
+    # TITULO DA JANELA: ÁREA DE LOGIN
+    MDLabel:
+        text: "Área de Login"
+        bold: True
+        pos_hint: {"center_y": .85}
+        font_style: "H5"
+        halign: "center"
+#
+
+
+<TelaInicial>:
+    name: "tela_inicial"    
+    # LAYOUT: TELA COMPLETA
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+
+        # IMAGEM CENTRAL 
+        Image:
+            source: "./assets/images/icon.png"
+            size_hint: .4, .4
+            #ize_hint: None, None
+            #size: 181, 181
+            pos_hint: {"center_x": .5, "center_y": .66}
+            canvas.before:
+                Color:
+                    rgb: 1, .85, .825, 1 
+            
+        # TITULO DA JANELA: BEM VINDO
+        MDLabel:
+            id: titulo
+            text: "Bem vindo(a)!"
+            halign: "center"
+            font_size:"35sp"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0
+            pos_hint: {"center_x": .5, "center_y": .9}       
+        
+        # DIV PARA COLOCAR OS ITENS INFERIORES
+        MDFloatLayout:
+            md_bg_color: hex("#e62331")
+            
+            size_hint: 1, None
+            size: 0, (root.height/2.7)
+            pos_hint: {"center_x": .5, "center_y": .27}
+
+            # IMAGEM LOGO ANDROID
+            Image:
+                source: "./assets/images/tela_inicial/android.png"
+                size_hint: .50, .50
+                pos_hint: {"center_x": .5, "center_y": .8}
+
+            # SUBTITULO DA JANELA
+            MDLabel:
+                markup: True
+                text: "Um aplicativo Android 100% funcional \nutilizando somente a linguagem [b]Python![/b]\n\n Complementado com a biblioteca [b]kivy[/b], \npara facilitar a escrita do código no Front-End \ne focar mais no Back-End.\n\n\n"   
+                halign: "center"
+                font_size:"14sp"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1 
+                pos_hint: {"center_x": .5, "center_y": .3}   
+            
+            # BOTÃO: IR PARA TELA DE LOGIN
+            MDIconButton:
+                user_font_size: "45sp"
+                icon: "arrow-right"
+                color: 1,1,1
+                on_press: app.root.current = "tela_login"
+                pos_hint: {"center_x": .5, "center_y": .10}      
+                theme_icon_color: "Custom"
+                icon_color: 1,1,1,1
+#
+
+
+<TelaPrincipal>:
+    name: "tela_principal"
+    # DECORAÇÕES
+    MDBoxLayout:
+        # md_bg_color: 195/255, 195/255, 195/255, 1
+        md_bg_color: hex("#55c0eb")
+        size_hint: None, .2
+        width: self.height
+        radius: self.height / 2
+        pos: -self.height / 2 + dp(10), self.height/2 + dp(42)
+
+    MDBoxLayout:
+        # md_bg_color: 195/255, 195/255, 195/255, 1
+        md_bg_color: hex("#55c0eb")
+        size_hint: None, .15
+        width: self.height
+        radius: self.height / 2
+        pos: root.width - self.width / 1.1, root.height - dp(120)
+
+    Image:
+        size_hint: .5,.5
+        pos_hint: {"center_x": .5, "center_y": .5}
+        source:
+            f"{os.environ['MEU_APP_ROOT']}" \
+            f"/assets/images/tela_principal/feliz_natal.png"
+
+    
+#
+
+
+<TelaCadastroUsuario>:
+    
+    name: "tela_cadastro_usuario"
+    md_bg_color: app.theme_cls.bg_dark
+      
+    # DECORAÇÕES 
+    MDBoxLayout:
+        md_bg_color: hex("5d9d5d") # VERDES
+        size_hint: None, .12
+        width: self.height
+        radius: self.height / 2
+        pos: -self.height / 2 + dp(10), self.height/2 + dp(42)
+
+    MDBoxLayout:
+        md_bg_color: hex("5d9d5d") # VERDES
+        size_hint: None, .15
+        width: self.height
+        radius: self.height / 2
+        pos: root.width - self.width / 1.1, root.height - dp(120)
+
+    # ÁREA DE TEXT FIELDS
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "12dp"
+        size_hint_x: .6
+        pos_hint: {"center_x": .5, "center_y": .5}
+        adaptive_height: True
+
+        MDTextField:
+            id: nome_field # usuarioInput
+            hint_text: "Nome"
+            icon_left: "account"
+            mode: "round"
+            height: "42dp"
+            write_tab: False
+        
+        MDLabel:
+            id: nome_field_txt_erro # usuarioInput
+            text: "    nome inválido"
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+
+        MDTextField:
+            # id: usuario_field # usuarioInput
+            hint_text: "Setor"
+            icon_left: "tag"
+            mode: "round"
+            height: "42dp"
+            write_tab: False
+
+        MDLabel:
+            id: setor_field_txt_erro 
+            text: "    setor inválido"
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+
+        MDTextField:
+            # id: usuario_field # usuarioInput
+            hint_text: "E-mail"
+            icon_left: "at"
+            mode: "round"
+            height: "42dp"
+            write_tab: False
+
+        MDLabel:
+            id: email_field_txt_erro 
+            text: "    email inválido"
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+
+        MDTextField:
+            # id: usuario_field # usuarioInput
+            hint_text: "Senha"
+            icon_left: "key"
+            password: True
+            mode: "round"
+            height: "42dp"
+            write_tab: False
+
+        MDLabel:
+            id: senha_field_txt_erro 
+            text: "    senha inválida"
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+
+        MDTextField:
+            # id: usuario_field # usuarioInput
+            hint_text: "Confirmar senha"
+            icon_left: "key-plus"
+            password: True
+            mode: "round"
+            height: "42dp"
+            write_tab: False
+
+        MDLabel:
+            id: usuario_field_txt_erro 
+            text: "    as senhas precisam ser iguais"
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+
+        MDLabel:
+            text: " "
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+
+        MDLabel:
+            text: " "
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+
+
+        MDFillRoundFlatButton:
+            text: "REGISTRAR"
+            theme_text_color: "Custom"
+            md_bg_color: "green"
+            size_hint: None, None
+            size: nome_field.size[0], nome_field.size[1]
+            pos_hint: {"center_x": .5}
+            on_release: root.irParaTelaRegistrarUsuario()
+        
+    MDLabel:
+        text: "Área de Cadastro"
+        bold: True
+        pos_hint: {"center_y": .85}
+        font_style: "H5"
+        halign: "center"
+#
+
+
+<TelaEsqueceuSenha>:
+    name: "tela_esqueceu_senha"
+    # DECORAÇÕES
+    MDBoxLayout:
+        md_bg_color: hex("f8d56b") # LARANJA FRACO
+        size_hint: None, .2
+        width: self.height
+        radius: self.height / 2
+        pos: -self.height / 2 + dp(10), self.height/2 + dp(42)
+
+    MDBoxLayout:
+        md_bg_color: hex("f8d56b") # LARANJA FRACO
+        size_hint: None, .15
+        width: self.height
+        radius: self.height / 2
+        pos: root.width - self.width / 1.1, root.height - dp(120)
+
+    # ÁREA DE TEXT FIELDS
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "12dp"
+        size_hint_x: .6
+        pos_hint: {"center_x": .5, "center_y": .65}
+        adaptive_height: True
+
+        # usuario_field
+        MDTextField:
+            id: solicita_email_field
+            hint_text: "Email"
+            icon_left: "at"
+            mode: "round"
+            height: "42dp"
+            write_tab: False
+        # usuario_field_txt_erro
+        MDLabel:
+            id: solicita_email_field_txt_erro 
+            text: "    email inválido"
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+        # ESPAÇAMENTOS
+        MDLabel:
+            text: " "
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+        MDLabel:
+            text: " "
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+        # BOTÃO DE ENVIAR EMAIL
+        MDFillRoundFlatButton:
+            text: "ENVIAR EMAIL"
+            size_hint: None, None
+            size: solicita_email_field.size[0], solicita_email_field.size[1]
+            pos_hint: {"center_x": .5}
+            on_release: root.irParaTelaLogin()
+    # TITULO DA JANELA: RECUPERAR SENHA
+    MDLabel:
+        text: "Recuperar Senha"
+        bold: True
+        pos_hint: {"center_y": .85}
+        font_style: "H5"
+        halign: "center"
+#
+
+
+<MinhaTopBarLogin>:
+    title: "Estagiários ITERPA"
+    elevation: 0
+    right_action_items: [["logout", lambda x: root.funcaoLogout(x)]]
+    left_action_items: [["help-box", lambda x: root.funcaoHelpBox(x)]]
+    pos_hint: {"center_x": .5, "center_y": .970}
+#
+
+
+<MinhaTopBar>:
+    title: "Estagiários ITERPA"
+    elevation: 0
+    left_action_items: [["arrow-left", lambda x: root.funcaoVoltarLogin(x)]]
+    pos_hint: {"center_x": .5, "center_y": .970}
+#
+
+
+ScreenManager:
+    TelaInicial:
+    TelaLogin:
+        MinhaTopBarLogin:
+    TelaCadastroUsuario:
+        MinhaTopBar:
+            md_bg_color: hex("#3f7d3f") # VERDE ESCURO
+    TelaPrincipal:
+        MinhaTopBar:
+    TelaEsqueceuSenha:
+        MinhaTopBar:
+            md_bg_color: hex("#ffc107") # LARANJA AMARELADO
+            
