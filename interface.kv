@@ -75,7 +75,7 @@
     MDBoxLayout:
         orientation: "vertical"
         spacing: "12dp"
-        size_hint_x: .6
+        size_hint_x: .8
         pos_hint: {"center_x": .5, "center_y": .35}
         adaptive_height: True
 
@@ -130,7 +130,7 @@
         MDFillRoundFlatButton:
             text: "LOGIN"
             size_hint: None, None
-            size: usuario_field.size[0], usuario_field.size[1]
+            size: (usuario_field.size[0])*0.6, usuario_field.size[1]
             pos_hint: {"center_x": .5}
             on_release: root.irParaTelaPrincipal()
         # BOTÃO DE REGISTRAR
@@ -139,7 +139,7 @@
             theme_text_color: "Custom"
             md_bg_color: "green"
             size_hint: None, None
-            size: usuario_field.size[0], usuario_field.size[1]
+            size: (usuario_field.size[0])*0.6, usuario_field.size[1]
             pos_hint: {"center_x": .5}
             on_release: root.irParaTelaCadastroUsuario()
         # LINK ESQUECEU SUA SENHA
@@ -279,10 +279,10 @@
     MDBoxLayout:
         orientation: "vertical"
         spacing: "12dp"
-        size_hint_x: .6
+        size_hint_x: .8
         pos_hint: {"center_x": .5, "center_y": .5}
         adaptive_height: True
-
+        # NOME
         MDTextField:
             id: nome_field # usuarioInput
             hint_text: "Nome"
@@ -298,7 +298,7 @@
             theme_text_color: "Custom"
             text_color: 1, 0, 0, 1
             font_size: "12sp"
-
+        # SETOR
         MDTextField:
             # id: usuario_field # usuarioInput
             hint_text: "Setor"
@@ -314,7 +314,7 @@
             theme_text_color: "Custom"
             text_color: 1, 0, 0, 1
             font_size: "12sp"
-
+        # EMAIL
         MDTextField:
             # id: usuario_field # usuarioInput
             hint_text: "E-mail"
@@ -330,7 +330,7 @@
             theme_text_color: "Custom"
             text_color: 1, 0, 0, 1
             font_size: "12sp"
-
+        # SENHA
         MDTextField:
             # id: usuario_field # usuarioInput
             hint_text: "Senha"
@@ -347,7 +347,7 @@
             theme_text_color: "Custom"
             text_color: 1, 0, 0, 1
             font_size: "12sp"
-
+        # CONFIRMAR SENHA
         MDTextField:
             # id: usuario_field # usuarioInput
             hint_text: "Confirmar senha"
@@ -364,7 +364,7 @@
             theme_text_color: "Custom"
             text_color: 1, 0, 0, 1
             font_size: "12sp"
-
+        # ESPAÇAMENTOS
         MDLabel:
             text: " "
             markup: True
@@ -379,13 +379,13 @@
             text_color: 1, 0, 0, 1
             font_size: "12sp"
 
-
+        # BOTÃO REGISTRAR
         MDFillRoundFlatButton:
             text: "REGISTRAR"
             theme_text_color: "Custom"
             md_bg_color: "green"
             size_hint: None, None
-            size: nome_field.size[0], nome_field.size[1]
+            size: (nome_field.size[0])*0.6, (nome_field.size[1])
             pos_hint: {"center_x": .5}
             on_release: root.irParaTelaRegistrarUsuario()
         
@@ -419,7 +419,7 @@
     MDBoxLayout:
         orientation: "vertical"
         spacing: "12dp"
-        size_hint_x: .6
+        size_hint_x: .8
         pos_hint: {"center_x": .5, "center_y": .65}
         adaptive_height: True
 
@@ -456,7 +456,7 @@
         MDFillRoundFlatButton:
             text: "ENVIAR EMAIL"
             size_hint: None, None
-            size: solicita_email_field.size[0], solicita_email_field.size[1]
+            size: (solicita_email_field.size[0])*0.6, solicita_email_field.size[1]
             pos_hint: {"center_x": .5}
             on_release: root.irParaTelaLogin()
     # TITULO DA JANELA: RECUPERAR SENHA
