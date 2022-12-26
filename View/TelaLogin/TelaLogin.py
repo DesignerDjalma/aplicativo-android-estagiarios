@@ -1,7 +1,11 @@
 from kivymd.uix.behaviors import StencilBehavior
 from kivymd.uix.screen import MDScreen
 from kivymd.app import MDApp
+import sys
+sys.path.append(r"C:\Users\dflfilho\Documents\repositorios\aplicativo-android-estagiarios\utils\Firebase")
+import firebase
 
+BANCO_DE_DADOS = firebase.BancoDeDados()
 
 class TelaLogin(MDScreen, StencilBehavior):
     def __init__(self, **kw):
@@ -23,5 +27,14 @@ class TelaLogin(MDScreen, StencilBehavior):
     def irParaTelaCadastroUsuario(self):
         self.irParaTela(tela="tela_cadastro_usuario",direcao="left")
 
+    def on_enter(self, *args):
+        res = firebase.getServerStatus()
         
+        if res == "ONLINE":
+            self.ids.server_status.text_color = [93/255,157/255,93/255]
+        else:
+             self.ids.server_status.text_color = [1,0,0]
+
+        self.ids.server_status.text = res
+
 

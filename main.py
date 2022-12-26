@@ -12,7 +12,6 @@ from pathlib import Path
 import os
 import sys
 
-
 Window.size = (360,650)
 
 
