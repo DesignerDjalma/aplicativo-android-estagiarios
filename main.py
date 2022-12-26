@@ -5,6 +5,7 @@ from View.TelaLogin.TelaLogin import TelaLogin
 from View.TelaPrincipal.TelaPrincipal import TelaPrincipal
 from View.Widgets.minhaTopBarLogin import MinhaTopBarLogin
 from View.Widgets.minhaTopBar import MinhaTopBar
+from View.TelaPrincipal.TelaPrincipal import SliverCard
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivymd.app import MDApp

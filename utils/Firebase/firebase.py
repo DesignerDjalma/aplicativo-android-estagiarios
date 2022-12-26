@@ -1,21 +1,20 @@
-import requests
 import json
-import threading
+import requests
 from multiprocessing.pool import ThreadPool
 
-def thread(function):
-    print("Executando thread...")
+# def thread(function):
+#     print("Executando thread...")
     
-    def wrap(*args, **kwargs):
-        print("Executando thread.wrap")
-        t = threading.Thread(target=function, args=args,kwargs=kwargs,daemon=True)
-        t.start()
-        print("Retornando t.start()")
-        return t
-    print("Retornando wrap")
-    return wrap
+#     def wrap(*args, **kwargs):
+#         print("Executando thread.wrap")
+#         t = threading.Thread(target=function, args=args,kwargs=kwargs,daemon=True)
+#         t.start()
+#         print("Retornando t.start()")
+#         return t
+#     print("Retornando wrap")
+#     return wrap
 
-def processos(funcao):
+def processos(funcao) -> str:
     pool = ThreadPool(processes=1)
     async_result = pool.apply_async(funcao, ())
     return async_result.get()
@@ -53,7 +52,7 @@ class MeuFireBase:
     
 
 class TipoRequisicao:
-    acesso: str = "LogarUsuario"
+    acesso: str = "usuarios"
     registro: str = "usuarios"
     recuperar: str = "RecuperarSenha"
 
@@ -67,11 +66,29 @@ class Usuario:
     @staticmethod
     def novoUsuario(nome: str="", setor: str="", email: str="", senha: str=""):
         pass
+    @staticmethod
+    def verUsuarios(tipo: TipoRequisicao = TipoRequisicao.acesso) -> None:
+        """Entra na base dos dados e mostra o tipo especificado de dado."""
+        
+        url = Requisicao.tipo(tipo)
+        req = requests.get(url)
+        if req.status_code != 200:
+            return False, "Erro"
+        else:
+            users = json.loads(req.text)
+            if isinstance(users, list):
+                return False, users[1:]
+            else:
+                return True, users
+
 def getServerStatus():
-    return processos(BancoDeDados.status)
+    
+    return processos(statusBancoDeDados)
+
 
   # get the return value from your function.
 
 
 if __name__ == "__main__":
-    getServerStatus()
+    # print(Usuario.verUsuarios())
+    print(getServerStatus())

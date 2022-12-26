@@ -28,7 +28,7 @@ class TelaLogin(MDScreen, StencilBehavior):
         self.irParaTela(tela="tela_cadastro_usuario",direcao="left")
 
     def on_enter(self, *args):
-        res = firebase.getServerStatus()
+        res = firebase.statusBancoDeDados()
         
         if res == "ONLINE":
             self.ids.server_status.text_color = [93/255,157/255,93/255]
@@ -37,4 +37,9 @@ class TelaLogin(MDScreen, StencilBehavior):
 
         self.ids.server_status.text = res
 
+from multiprocessing.pool import ThreadPool
 
+def processos(funcao) -> str:
+    pool = ThreadPool(processes=1)
+    async_result = pool.apply_async(funcao, ())
+    return async_result.get()
