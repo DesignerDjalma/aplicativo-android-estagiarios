@@ -1,6 +1,8 @@
 import json
 import requests
 from multiprocessing.pool import ThreadPool
+from kivy.network.urlrequest import UrlRequest
+
 
 # def thread(function):
 #     print("Executando thread...")
@@ -60,7 +62,7 @@ class TipoRequisicao:
 class Requisicao:
     @staticmethod
     def tipo(_tipo: TipoRequisicao) -> str:
-        return f"{MeuFireBase.url}/py/{_tipo}.json"
+        return f"{MeuFireBase.url}py/{_tipo}.json"
 
 class Usuario:
     usuarios_dict = {}
@@ -82,9 +84,47 @@ class Usuario:
                 return False, users[1:]
             else:
                 return True, users
+    
+    @staticmethod
+    def verUsuariosKivy(tipo: TipoRequisicao = TipoRequisicao.acesso) -> None:
+        """Entra na base dos dados e mostra o tipo especificado de dado."""
+
+        def success(req, result):
+            print(result)
+            print('success')
+
+        def fail(req, result):
+            print('fail')
+
+        def error(req, result):
+            print('error')
+
+        def progress(req, result, chunk):
+            print('loading')
+
+
+        url = Requisicao.tipo(tipo)
+        print(f"URL {url}")
+        
+        req = UrlRequest(
+            url,
+            on_success=success,
+            on_failure=fail,
+            on_error=error,
+            on_progress=progress
+        )
+        req.wait()
+
+        if req.resp_status != 200:
+            return False, "Erro"
+        else:
+            users = json.loads(req.text)
+            if isinstance(users, list):
+                return False, users[1:]
+            else:
+                return True, users
 
 def getServerStatus():
-    
     return processos(statusBancoDeDados)
 
 
@@ -94,5 +134,5 @@ def getServerStatus():
 if __name__ == "__main__":
     # print(Usuario.verUsuarios())
     #print(getServerStatus())
-    u = Usuario.verUsuarios()
+    u = Usuario.verUsuariosKivy()
     print(u)
