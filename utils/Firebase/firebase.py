@@ -63,6 +63,8 @@ class Requisicao:
         return f"{MeuFireBase.url}/py/{_tipo}.json"
 
 class Usuario:
+    usuarios_dict = {}
+
     @staticmethod
     def novoUsuario(nome: str="", setor: str="", email: str="", senha: str=""):
         pass
@@ -91,4 +93,6 @@ def getServerStatus():
 
 if __name__ == "__main__":
     # print(Usuario.verUsuarios())
-    print(getServerStatus())
+    #print(getServerStatus())
+    u = Usuario.verUsuarios()
+    print(u)

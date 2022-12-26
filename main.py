@@ -6,6 +6,7 @@ from View.TelaPrincipal.TelaPrincipal import TelaPrincipal
 from View.Widgets.minhaTopBarLogin import MinhaTopBarLogin
 from View.Widgets.minhaTopBar import MinhaTopBar
 from View.TelaPrincipal.TelaPrincipal import SliverCard
+from utils.Firebase.firebase import Usuario
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivymd.app import MDApp
@@ -35,6 +36,10 @@ class EstagiariosIterpaApp(MDApp):
 
     def build(self, kv="./interface.kv"):
         return Builder.load_file(kv)
+
+    def carregarBancoDeDados(self):
+        self.usuarios = Usuario.verUsuarios()
+        return self.usuarios
 
 if __name__ == "__main__":
     EstagiariosIterpaApp().run()
