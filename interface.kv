@@ -2,12 +2,8 @@
 #:import hex kivy.utils.get_color_from_hex
 #:import math math
 
-
-
-
-
-# teste de silver card
-<SliverCard>
+# 
+<UsuarioCard>
     size_hint_y: None
     height: "86dp"
     padding: "4dp"
@@ -34,7 +30,7 @@
         MDLabel:
             id: titulodomdcard
             text: "Title text"
-            font_style: "H5"
+            font_style: "H6"
             bold: True
             adaptive_height: True
 
@@ -43,13 +39,7 @@
             text: "Subtitle text"
             theme_text_color: "Hint"
             adaptive_height: True
-
-
-
-
-
-
-
+#
 
 <TextoErro@MDLabel>:
     markup: True
@@ -57,7 +47,6 @@
     text_color: 1, 0, 0, 1
     font_size: "12sp"
 #
-
 
 <Centralizador@MDFloatLayout>:
     # md_bg_color: 0.4, 0.4, 0.4, 1.0
@@ -67,7 +56,6 @@
     pos_hint: {"center_x": .5, "center_y": .5}
 #
 
-
 <Separador@MDFloatLayout>:
     # md_bg_color: 0.4, 0.4, 0.4, 1.0
     size_hint: None, None
@@ -76,7 +64,6 @@
     pos_hint: {"center_x": .5, "center_y": .5}
 #
 
-
 <BotaoPadrao@MDFillRoundFlatButton>:
     pos_hint: {"center_x": .5, "center_y": .5}
     text_color: "white"
@@ -84,12 +71,10 @@
     halign: "center"
 #    
 
-
 <UserInput@MDTextField>:
     write_tab: False
     mode: "rectangle"
 #
-
 
 <TelaLogin>
     name: "tela_login"
@@ -226,7 +211,6 @@
         halign: "center"
 #
 
-
 <TelaInicial>:
     name: "tela_inicial"    
     # LAYOUT: TELA COMPLETA
@@ -256,7 +240,7 @@
         
         # DIV PARA COLOCAR OS ITENS INFERIORES
         MDFloatLayout:
-            md_bg_color: hex("#e62331")
+            md_bg_color: hex("#4169e1")
             
             size_hint: 1, None
             size: 0, (root.height/2.7)
@@ -288,7 +272,6 @@
                 theme_icon_color: "Custom"
                 icon_color: 1,1,1,1
 #
-
 
 <TelaPrincipal>:
     name: "tela_principal"
@@ -339,7 +322,6 @@
 
 #
 
-
 <TelaCadastroUsuario>:
     
     name: "tela_cadastro_usuario"
@@ -365,17 +347,18 @@
         orientation: "vertical"
         spacing: "12dp"
         size_hint_x: .8
-        pos_hint: {"center_x": .5, "center_y": .5}
+        pos_hint: {"center_x": .5, "center_y": .47}
         adaptive_height: True
+        
+        
         # NOME
         MDTextField:
             id: nome_field # usuarioInput
-            hint_text: "Nome"
+            hint_text: "Nome e Sobrenome"
             icon_left: "account"
             mode: "round"
             height: "42dp"
             write_tab: False
-        
         MDLabel:
             id: nome_field_txt_erro # usuarioInput
             text: "    nome inválido"
@@ -383,15 +366,33 @@
             theme_text_color: "Custom"
             text_color: 1, 0, 0, 1
             font_size: "12sp"
+       
+       
+        # USERNAME
+        MDTextField:
+            id: username_field # usuarioInput
+            hint_text: "Username"
+            icon_left: "account"
+            mode: "round"
+            height: "42dp"
+            write_tab: False
+        MDLabel:
+            id: username_field_txt_erro # usuarioInput
+            text: "    username inválido"
+            markup: True
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+            font_size: "12sp"
+        
+        
         # SETOR
         MDTextField:
-            # id: usuario_field # usuarioInput
+            id: setor_field # usuarioInput
             hint_text: "Setor"
             icon_left: "tag"
             mode: "round"
             height: "42dp"
             write_tab: False
-
         MDLabel:
             id: setor_field_txt_erro 
             text: "    setor inválido"
@@ -399,15 +400,16 @@
             theme_text_color: "Custom"
             text_color: 1, 0, 0, 1
             font_size: "12sp"
+        
+        
         # EMAIL
         MDTextField:
-            # id: usuario_field # usuarioInput
+            id: email_field # usuarioInput
             hint_text: "E-mail"
             icon_left: "at"
             mode: "round"
             height: "42dp"
             write_tab: False
-
         MDLabel:
             id: email_field_txt_erro 
             text: "    email inválido"
@@ -415,16 +417,17 @@
             theme_text_color: "Custom"
             text_color: 1, 0, 0, 1
             font_size: "12sp"
+       
+       
         # SENHA
         MDTextField:
-            # id: usuario_field # usuarioInput
+            id: senha_field # usuarioInput
             hint_text: "Senha"
             icon_left: "key"
             password: True
             mode: "round"
             height: "42dp"
             write_tab: False
-
         MDLabel:
             id: senha_field_txt_erro 
             text: "    senha inválida"
@@ -432,23 +435,26 @@
             theme_text_color: "Custom"
             text_color: 1, 0, 0, 1
             font_size: "12sp"
+        
+
         # CONFIRMAR SENHA
         MDTextField:
-            # id: usuario_field # usuarioInput
+            id: confirmar_senha_field # usuarioInput
             hint_text: "Confirmar senha"
             icon_left: "key-plus"
             password: True
             mode: "round"
             height: "42dp"
             write_tab: False
-
         MDLabel:
-            id: usuario_field_txt_erro 
+            id: confirmar_senha_field_txt_erro 
             text: "    as senhas precisam ser iguais"
             markup: True
             theme_text_color: "Custom"
             text_color: 1, 0, 0, 1
             font_size: "12sp"
+        
+
         # ESPAÇAMENTOS
         MDLabel:
             text: " "
@@ -456,13 +462,13 @@
             theme_text_color: "Custom"
             text_color: 1, 0, 0, 1
             font_size: "12sp"
-
         MDLabel:
             text: " "
             markup: True
             theme_text_color: "Custom"
             text_color: 1, 0, 0, 1
             font_size: "12sp"
+
 
         # BOTÃO REGISTRAR
         MDFillRoundFlatButton:
@@ -472,8 +478,9 @@
             size_hint: None, None
             size: (nome_field.size[0])*0.6, (nome_field.size[1])
             pos_hint: {"center_x": .5}
-            on_release: root.irParaTelaRegistrarUsuario()
+            on_release: root.validarDados()
         
+
     MDLabel:
         text: "Área de Cadastro"
         bold: True
@@ -481,7 +488,6 @@
         font_style: "H5"
         halign: "center"
 #
-
 
 <TelaEsqueceuSenha>:
     name: "tela_esqueceu_senha"
@@ -553,7 +559,6 @@
         halign: "center"
 #
 
-
 <MinhaTopBarLogin>:
     title: "Estagiários ITERPA"
     elevation: 0
@@ -562,14 +567,12 @@
     pos_hint: {"center_x": .5, "center_y": .970}
 #
 
-
 <MinhaTopBar>:
     title: "Estagiários ITERPA"
     elevation: 0
     left_action_items: [["arrow-left", lambda x: root.funcaoVoltarLogin(x)]]
     pos_hint: {"center_x": .5, "center_y": .970}
 #
-
 
 ScreenManager:
     TelaInicial:

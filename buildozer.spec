@@ -7,7 +7,7 @@ title = Estagiários ITERPA
 package.name = estagiariositerpa
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.iterpa
+package.domain = org.djalma
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -29,7 +29,7 @@ source.include_exts = py,png,jpg,kv,atlas,ttf
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 0.4
+version = 0.6.5
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -37,7 +37,7 @@ version = 0.4
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,Kivy==2.1.0,kivymd==1.1.1,Kivy-Garden==0.1.5,CacheControl==0.12.11,cachetools==5.2.0,certifi==2022.12.7,cffi==1.15.1,charset-normalizer==2.1.1,cryptography==38.0.4,firebase-admin==6.0.1,google-api-core==2.11.0,google-api-python-client==2.70.0,google-auth==2.15.0,google-auth-httplib2==0.1.0,google-cloud-core==2.3.2,google-cloud-firestore==2.7.3,google-cloud-storage==2.7.0,google-crc32c==1.5.0,google-resumable-media==2.4.0,googleapis-common-protos==1.57.0,grpcio==1.51.1,grpcio-status==1.51.1,httplib2==0.21.0,idna==3.4,msgpack==1.0.4,proto-plus==1.22.1,protobuf==4.21.12,pyasn1==0.4.8,pyasn1-modules==0.2.8,pycparser==2.21,PyJWT==2.6.0,pyparsing==3.0.9,requests==2.28.1,rsa==4.9,six==1.16.0,uritemplate==4.1.1,urllib3==1.26.13
+requirements = python3,Kivy==2.1.0,kivymd==1.1.1,Kivy-Garden==0.1.5
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -50,7 +50,7 @@ presplash.filename = %(source.dir)s/assets/images/presplash.png
 icon.filename = %(source.dir)s/assets/images/icon.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
-orientation = all
+orientation = portrait
 
 # (list) List of service to declare
 #services = NAME:ENTRYPOINT_TO_PY,NAME2:ENTRYPOINT2_TO_PY
@@ -99,7 +99,7 @@ android.permissions = INTERNET
 #android.features = android.hardware.usb.host
 
 # (int) Target Android API, should be as high as possible.
-android.api = 30
+android.api = 29
 
 # (int) Minimum API your APK / AAB will support.
 #android.minapi = 21

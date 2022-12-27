@@ -5,8 +5,8 @@ from View.TelaLogin.TelaLogin import TelaLogin
 from View.TelaPrincipal.TelaPrincipal import TelaPrincipal
 from View.Widgets.minhaTopBarLogin import MinhaTopBarLogin
 from View.Widgets.minhaTopBar import MinhaTopBar
-from View.TelaPrincipal.TelaPrincipal import SliverCard
-from utils.Firebase.firebase import Usuario
+from View.TelaPrincipal.TelaPrincipal import UsuarioCard
+from utils.Firebase.firebase import Usuarios
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivymd.app import MDApp
@@ -14,7 +14,11 @@ from pathlib import Path
 import os
 import sys
 
-Window.size = (360,650)
+from kivy.config import Config
+Config.set('kivy', 'exit_on_escape', '0')
+
+
+#Window.size = (360,650)
 
 
 if getattr(sys, "frozen", False):
@@ -27,7 +31,7 @@ os.environ["MEU_APP_ASSETS"] = os.path.join(os.environ["MEU_APP_ROOT"], f"assets
 Window.softinput_mode = "below_target"
 
 
-class EstagiariosIterpaApp(MDApp):
+class EstagiariosIterpaApp(MDApp):    
     def __init__(self, **kw):
         super().__init__(**kw)
         self.title = "Estagiários ITERPA 2023"
@@ -37,9 +41,7 @@ class EstagiariosIterpaApp(MDApp):
     def build(self, kv="./interface.kv"):
         return Builder.load_file(kv)
 
-    def carregarBancoDeDados(self):
-        self.usuarios = Usuario.verUsuarios()
-        return self.usuarios
+
 
 if __name__ == "__main__":
     EstagiariosIterpaApp().run()
