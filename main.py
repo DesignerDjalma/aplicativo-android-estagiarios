@@ -18,7 +18,7 @@ from kivy.config import Config
 Config.set('kivy', 'exit_on_escape', '0')
 
 
-#Window.size = (360,650)
+Window.size = (360,650)
 
 
 if getattr(sys, "frozen", False):

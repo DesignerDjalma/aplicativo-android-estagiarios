@@ -56,6 +56,7 @@ class MeuFireBase:
         return usuarios.usuarios_dict
 
     def novo(self, args):
+        pass
  
 class Usuarios:
 
