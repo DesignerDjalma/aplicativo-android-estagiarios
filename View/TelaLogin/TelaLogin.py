@@ -7,7 +7,7 @@ import sys
 sys.path.append(dirname(dirname(dirname(abspath(__file__)))))
 from utils.Firebase.firebase import MeuFireBase
 
-#import firebase
+#import firebase 
 
 #BANCO_DE_DADOS = firebase.BancoDeDados()
 
